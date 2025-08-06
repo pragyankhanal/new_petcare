@@ -83,6 +83,44 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
+        <!-- Pending Request Card -->
+        <LinearLayout
+            android:id="@+id/pending_request_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_rounded_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/upcoming_appointment_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <TextView
+                android:id="@+id/pending_request_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending Caregiver Request"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pending_request_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Pet Type: Dog, Location: Kathmandu"
+                android:textColor="#666666"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
         <!-- Container for side-by-side buttons -->
         <LinearLayout
             android:id="@+id/button_container"
