@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+    private var currentUserRole: String = "pet_owner" // default
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -63,6 +66,10 @@ class MainActivity : AppCompatActivity() {
         upcomingAppointmentDate = findViewById(R.id.upcoming_appointment_date)
         pendingRequestCard = findViewById(R.id.pending_request_card)
         pendingRequestSummary = findViewById(R.id.pending_request_summary)
+        val prefs = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        currentUserRole = prefs.getString("user_role", "pet_owner") ?: "pet_owner"
+        applyUserRole()
+
 
         // Initialize location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -87,19 +94,24 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_profile -> {
-                    Toast.makeText(this, "Profile clicked", Toast.LENGTH_SHORT).show()
+                    // Open UserProfileActivity
+                    startActivity(Intent(this, UserProfileActivity::class.java))
                     drawerLayout.closeDrawer(GravityCompat.END)
                     true
                 }
-                R.id.nav_settings -> {
-                    Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
-                    drawerLayout.closeDrawer(GravityCompat.END)
-                    true
-                }
+
+
                 R.id.nav_logout -> {
                     performLogout()
                     true
                 }
+
+                R.id.nav_switch_role -> {
+                    toggleUserRole()
+                    drawerLayout.closeDrawer(GravityCompat.END)
+                    true
+                }
+
                 else -> false
             }
         }
@@ -114,6 +126,8 @@ class MainActivity : AppCompatActivity() {
 
         loadLatestAppointment()
         loadLatestPendingRequest()
+        updateSwitchRoleMenuItem()
+
 
         upcomingAppointmentCard.setOnClickListener {
             latestAppointment?.let { showAppointmentDetailsDialog(it) }
@@ -324,7 +338,7 @@ class MainActivity : AppCompatActivity() {
                 location
             )
 
-            pendingRequestSummary.text = "Pet Type: $petType, Location: $location"
+            pendingRequestSummary.text = "Pet Type: $petType,\nLocation: $location"
             pendingRequestCard.visibility = View.VISIBLE
         } else {
             pendingRequestCard.visibility = View.GONE
@@ -351,4 +365,34 @@ class MainActivity : AppCompatActivity() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.show()
     }
+
+    private fun toggleUserRole() {
+        val prefs = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val newRole = if (currentUserRole == "pet_owner") "caregiver" else "pet_owner"
+        prefs.edit().putString("user_role", newRole).apply()
+        currentUserRole = newRole
+        Toast.makeText(this, "Switched to $newRole mode", Toast.LENGTH_SHORT).show()
+        applyUserRole()
+        updateSwitchRoleMenuItem()
+    }
+
+
+    private fun applyUserRole() {
+        if (currentUserRole == "caregiver") {
+            buttonSearchCaregiver.visibility = View.GONE
+        } else {
+            buttonSearchCaregiver.visibility = View.VISIBLE
+        }
+    }
+
+    private fun updateSwitchRoleMenuItem() {
+        val menu = navigationView.menu
+        val switchRoleItem = menu.findItem(R.id.nav_switch_role)
+        switchRoleItem.title = if (currentUserRole == "caregiver") {
+            "Switch to Pet Owner Mode"
+        } else {
+            "Switch to Caregiver Mode"
+        }
+    }
+
 }

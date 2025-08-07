@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="@drawable/dialog_rounded_background"
+    android:background="@drawable/form_background"
     android:elevation="6dp"
     android:layout_margin="16dp">
 

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Username shown always, non-editable -->
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="24dp"
+            android:gravity="center" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:visibility="gone"
+            android:padding="8dp" />
+
+        <!-- Phone -->
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone"
+            android:inputType="phone"
+            android:visibility="gone"
+            android:padding="8dp" />
+
+        <!-- Pet Name -->
+        <TextView
+            android:id="@+id/tvPetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pet Name"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/etPetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Name"
+            android:visibility="gone"
+            android:padding="8dp" />
+
+        <!-- Pet Type -->
+        <TextView
+            android:id="@+id/tvPetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pet Type"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/etPetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Type"
+            android:visibility="gone"
+            android:padding="8dp" />
+
+        <!-- Pet Age -->
+        <TextView
+            android:id="@+id/tvPetAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pet Age"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <EditText
+            android:id="@+id/etPetAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Age"
+            android:inputType="number"
+            android:visibility="gone"
+            android:padding="8dp" />
+
+        <!-- Buttons -->
+        <Button
+            android:id="@+id/buttonEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:layout_marginTop="32dp" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:visibility="gone"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -51,7 +51,7 @@
             android:id="@+id/upcoming_appointment_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/dialog_rounded_background"
+            android:background="@drawable/form_background"
             android:clickable="true"
             android:focusable="true"
             android:orientation="vertical"
@@ -88,7 +88,7 @@
             android:id="@+id/pending_request_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/dialog_rounded_background"
+            android:background="@drawable/form_background"
             android:clickable="true"
             android:focusable="true"
             android:orientation="vertical"
@@ -169,10 +169,13 @@
     <!-- Right drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="@android:color/white"
-        app:menu="@menu/drawer_menu" />
+        app:menu="@menu/drawer_menu"
+        android:background="@android:color/white">
+
+    </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
