@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_page"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/form_background"
+        android:padding="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/textViewHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vet Appointment"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Pet Type -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select your pet type:"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+        <Spinner
+            android:id="@+id/spinnerPetType"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edittext_background" />
+
+        <!-- Service Description -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What type of veterinary services are you looking for?"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/editTextServiceType"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"
+            android:hint="Enter details.."
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"
+            android:gravity="top"
+            android:inputType="textMultiLine" />
+
+        <!-- Pet Condition -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please share information about your pet’s condition:"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/editTextPetCondition"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"
+            android:hint="Enter details.."
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"
+            android:gravity="top"
+            android:inputType="textMultiLine" />
+
+        <!-- First & Last Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet Owner's Name:"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:weightSum="2">
+
+            <EditText
+                android:id="@+id/editTextFirstName"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:hint="First Name"
+                android:background="@drawable/edittext_background"
+                android:padding="16dp"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/editTextLastName"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:hint="Last Name"
+                android:background="@drawable/edittext_background"
+                android:padding="16dp"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Phone -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number:"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"
+            android:hint="Enter number..."
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"
+            android:inputType="phone" />
+
+        <!-- Date Picker -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Appointment Date:"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+        <EditText
+            android:id="@+id/editTextDate"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:focusable="false"
+            android:background="@drawable/edittext_background"
+            android:padding="16dp"
+            android:textColor="#000000"
+            android:hint="Select date"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Submit Appointment"
+            android:textSize="16sp"
+            android:backgroundTint="#964B00"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</ScrollView>

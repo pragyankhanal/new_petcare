@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/form_background"
+    android:elevation="6dp"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Appointment Details"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1B6FE4"
+        android:gravity="center"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:id="@+id/textPetType"
+        style="@style/DetailTextStyle"
+        android:text="Pet Type:" />
+
+    <TextView
+        android:id="@+id/textServiceType"
+        style="@style/DetailTextStyle"
+        android:text="Service:" />
+
+    <TextView
+        android:id="@+id/textOwnerName"
+        style="@style/DetailTextStyle"
+        android:text="Owner:" />
+
+    <TextView
+        android:id="@+id/textPhone"
+        style="@style/DetailTextStyle"
+        android:text="Phone:" />
+
+    <TextView
+        android:id="@+id/textDate"
+        style="@style/DetailTextStyle"
+        android:text="Date:" />
+
+</LinearLayout>

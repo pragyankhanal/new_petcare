@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/PetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Type (e.g., Dog, Cat)"
+            android:inputType="textCapWords"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/PetAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Age"
+            android:inputType="number"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/SpecialNeeds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Special Needs (optional)"
+            android:inputType="textCapSentences"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/OwnerContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Owner's Contact Number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/buttonGetLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Use Current Location"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#1B6FE4"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+</ScrollView>
