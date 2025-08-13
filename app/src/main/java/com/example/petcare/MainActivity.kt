@@ -192,18 +192,19 @@ class MainActivity : AppCompatActivity() {
     private fun loadLatestPendingRequest() {
         loggedInUserId?.let { userId ->
             firestore.collection("caregiverRequests")
-                .whereEqualTo("userId", userId) // Added this line to filter by user ID
-                .orderBy("id") // replace with timestamp if you add
+                .whereEqualTo("userId", userId) // Filter by the logged-in user
                 .limit(1)
                 .get()
                 .addOnSuccessListener { snapshot ->
                     val doc = snapshot.documents.firstOrNull()
                     val request = doc?.toObject(CaregiverRequestData::class.java)
                     if (request != null) {
+                        // If a request is found, update the UI
                         latestPendingRequest = request
                         pendingRequestSummary.text = "Pet Type: ${request.petType},\nLocation: ${request.location}"
                         pendingRequestCard.visibility = View.VISIBLE
                     } else {
+                        // If no request is found, hide the card
                         pendingRequestCard.visibility = View.GONE
                     }
                 }

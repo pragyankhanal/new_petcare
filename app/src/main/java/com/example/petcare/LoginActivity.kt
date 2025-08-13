@@ -3,7 +3,7 @@ package com.example.petcare
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log // Import Log for debugging
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
@@ -47,15 +47,16 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
                     // --- THIS IS THE KEY CHANGE ---
-                    // Save the user's ID to SharedPreferences
+                    // Save the user's ID AND USERNAME to SharedPreferences
                     val sharedPrefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
                     with(sharedPrefs.edit()) {
                         putString("LOGGED_IN_USER_ID", user.id)
-                        apply() // Use apply() for asynchronous saving
+                        putString("LOGGED_IN_USERNAME", user.username) // This line was missing
+                        apply()
                     }
 
-                    // Optional: Log the ID to verify it's being saved
-                    Log.d("LoginActivity", "Saved user ID to SharedPreferences: ${user.id}")
+                    // Optional: Log the ID and username to verify they're being saved
+                    Log.d("LoginActivity", "Saved user ID: ${user.id} and Username: ${user.username}")
 
                     // Proceed to the main activity
                     startActivity(Intent(this, MainActivity::class.java))

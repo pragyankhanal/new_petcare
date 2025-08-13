@@ -6,7 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 // Data class for a caregiver request. It's now defined here.
 data class CaregiverRequestData(
-    var id: String = "",
+    var requestId: String = "",
     var userId: String = "", // Added userId field to link requests to a user
     var petType: String = "",
     var petAge: Int = 0,
@@ -32,7 +32,7 @@ class SearchCaregiverDB(private val context: Context) {
     ) {
         val docRef = requestsRef.document()
         val request = CaregiverRequestData(
-            id = docRef.id,
+            requestId = docRef.id,
             userId = userId,
             petType = petType,
             petAge = petAge,
@@ -51,12 +51,12 @@ class SearchCaregiverDB(private val context: Context) {
 
     // Update an existing request
     fun updateRequest(request: CaregiverRequestData, callback: (Boolean) -> Unit) {
-        if (request.id.isEmpty()) {
+        if (request.requestId.isEmpty()) {
             callback(false)
             return
         }
 
-        requestsRef.document(request.id)
+        requestsRef.document(request.requestId)
             .set(request)
             .addOnSuccessListener { callback(true) }
             .addOnFailureListener { e ->
