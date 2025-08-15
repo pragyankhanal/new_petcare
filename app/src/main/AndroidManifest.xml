@@ -24,6 +24,7 @@
         <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".VetAppointment" />
         <activity android:name=".UserProfileActivity" />
+        <activity android:name=".ChatbotActivity" />
 
 
 

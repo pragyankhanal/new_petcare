@@ -10,12 +10,12 @@
         android:id="@+id/recyclerViewChat"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/login_page"
         app:layout_constraintBottom_toTopOf="@id/inputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_chat_message"
-        android:background="@drawable/login_page"/>
+        tools:listitem="@layout/item_chat_message" />
 
     <LinearLayout
         android:id="@+id/inputLayout"
@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-        app:constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewChat">
 
         <EditText
             android:id="@+id/editTextMessage"
