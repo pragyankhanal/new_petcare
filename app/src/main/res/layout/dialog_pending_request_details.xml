@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="24dp"
     android:fillViewport="true"
     android:background="@drawable/form_background">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -113,6 +112,57 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/labelScheduledDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scheduled Date:"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/textScheduledDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="01/01/2024"
+            android:paddingBottom="24dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/buttonEditRequest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit Request"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#1B6FE4"/>
+
+            <Button
+                android:id="@+id/buttonDeleteRequest"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete Request"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#FF0000"/>
+
+            <Button
+                android:id="@+id/buttonAcceptRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Accept Request"
+                android:backgroundTint="#008000"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>

@@ -30,6 +30,11 @@
         android:text="Service:" />
 
     <TextView
+        android:id="@+id/textPetCondition"
+        style="@style/DetailTextStyle"
+        android:text="Condition:" />
+
+    <TextView
         android:id="@+id/textOwnerName"
         style="@style/DetailTextStyle"
         android:text="Owner:" />
@@ -42,6 +47,34 @@
     <TextView
         android:id="@+id/textDate"
         style="@style/DetailTextStyle"
-        android:text="Date:" />
+        android:text="Date:"
+        android:paddingBottom="24dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/buttonEditAppointment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Edit Appointment"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_button_blue"/>
+
+        <Button
+            android:id="@+id/buttonDeleteAppointment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delete Appointment"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#FF5252"
+            android:background="@drawable/rounded_button_blue"/>
+
+    </LinearLayout>
 </LinearLayout>

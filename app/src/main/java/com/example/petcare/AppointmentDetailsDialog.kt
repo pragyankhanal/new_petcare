@@ -10,7 +10,6 @@ import androidx.fragment.app.DialogFragment
 class AppointmentDetailsDialog(
     private val petType: String,
     private val serviceType: String,
-    private val petCondition: String,
     private val ownerName: String,
     private val phone: String,
 ) : DialogFragment() {

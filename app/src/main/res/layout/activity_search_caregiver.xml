@@ -2,13 +2,24 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@android:color/white">
+    android:background="@drawable/form_background"
+    android:padding="20dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request a Caregiver"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center_horizontal"/>
 
         <EditText
             android:id="@+id/PetType"
@@ -16,7 +27,10 @@
             android:layout_height="wrap_content"
             android:hint="Pet Type (e.g., Dog, Cat)"
             android:inputType="textCapWords"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/PetAge"
@@ -25,7 +39,9 @@
             android:hint="Pet Age"
             android:inputType="number"
             android:padding="12dp"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/SpecialNeeds"
@@ -34,7 +50,9 @@
             android:hint="Special Needs (optional)"
             android:inputType="textCapSentences"
             android:padding="12dp"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/OwnerContact"
@@ -43,14 +61,33 @@
             android:hint="Owner's Contact Number"
             android:inputType="phone"
             android:padding="12dp"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/scheduledDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Scheduled Date"
+            android:inputType="none"
+            android:focusable="false"
+            android:clickable="true"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/buttonGetLocation"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Use Current Location"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:textColor="#0000FF"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/buttonSubmit"
@@ -58,7 +95,7 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#1B6FE4"
-            android:textColor="#FFFFFF"/>
+            android:backgroundTint="#0000FF"
+            android:textColor="@android:color/white"/>
     </LinearLayout>
 </ScrollView>

@@ -8,6 +8,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
@@ -53,7 +58,8 @@
                 android:focusable="true"
                 android:orientation="vertical"
                 android:padding="16dp"
-                android:visibility="visible"
+                android:visibility="gone"
+                tools:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@id/welcome_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +86,19 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
+            <include
+                android:id="@+id/accepted_request_card_include"
+                layout="@layout/card_accepted_request"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/upcoming_appointment_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <LinearLayout
                 android:id="@+id/pending_request_card"
                 android:layout_width="0dp"
@@ -90,7 +109,8 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/upcoming_appointment_card"
+                tools:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/accepted_request_card_include"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="16dp"
@@ -115,6 +135,51 @@
                     android:textColor="#666666"
                     android:textSize="16sp" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/caregiver_requests_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Pending Caregiver Requests"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accepted_request_card_include" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/caregiverRequestsRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/button_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/caregiver_requests_title"
+                tools:listitem="@layout/item_caregiver_request" />
+
+            <TextView
+                android:id="@+id/no_requests_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="No pending requests found."
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/upcoming_appointment_card" />
 
             <LinearLayout
                 android:id="@+id/button_container"
@@ -159,6 +224,7 @@
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"

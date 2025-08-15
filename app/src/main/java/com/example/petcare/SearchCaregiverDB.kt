@@ -1,100 +1,75 @@
 package com.example.petcare
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 
-// Data class for a caregiver request. It's now defined here.
-data class CaregiverRequestData(
-    var requestId: String = "",
-    var userId: String = "", // Added userId field to link requests to a user
-    var petType: String = "",
-    var petAge: Int = 0,
-    var specialNeeds: String = "",
-    var ownerContact: String = "",
-    var location: String = ""
-)
-
 class SearchCaregiverDB(private val context: Context) {
 
-    private val db = FirebaseFirestore.getInstance()
-    private val requestsRef = db.collection("caregiverRequests")
+    private val firestore = FirebaseFirestore.getInstance()
+    private val requestsCollection = firestore.collection("caregiverRequests")
 
-    // Insert a new request
+    // In SearchCaregiverDB.kt, find this function and update it
     fun insertRequest(
-        userId: String, // Added userId as a parameter
+        userId: String,
         petType: String,
         petAge: Int,
         specialNeeds: String,
         ownerContact: String,
         location: String,
+        scheduledDate: String, // NEW: Add this parameter
         callback: (Boolean) -> Unit
     ) {
-        val docRef = requestsRef.document()
         val request = CaregiverRequestData(
-            requestId = docRef.id,
             userId = userId,
             petType = petType,
             petAge = petAge,
             specialNeeds = specialNeeds,
             ownerContact = ownerContact,
-            location = location
+            location = location,
+            status = "pending",
+            caregiverId = null,
+            scheduledDate = scheduledDate // NEW: Set the scheduledDate
         )
 
-        docRef.set(request)
-            .addOnSuccessListener { callback(true) }
+        requestsCollection.add(request)
+            .addOnSuccessListener {
+                Log.d("SearchCaregiverDB", "Request saved with ID: ${it.id}")
+                callback(true)
+            }
             .addOnFailureListener { e ->
-                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("SearchCaregiverDB", "Error adding document", e)
+                Toast.makeText(context, "Error submitting request: ${e.message}", Toast.LENGTH_SHORT).show()
                 callback(false)
             }
     }
 
-    // Update an existing request
     fun updateRequest(request: CaregiverRequestData, callback: (Boolean) -> Unit) {
-        if (request.requestId.isEmpty()) {
-            callback(false)
-            return
-        }
-
-        requestsRef.document(request.requestId)
+        requestsCollection.document(request.requestId)
             .set(request)
-            .addOnSuccessListener { callback(true) }
+            .addOnSuccessListener {
+                Log.d("SearchCaregiverDB", "Request updated with ID: ${request.requestId}")
+                callback(true)
+            }
             .addOnFailureListener { e ->
-                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("SearchCaregiverDB", "Error updating request", e)
+                Toast.makeText(context, "Error updating request: ${e.message}", Toast.LENGTH_SHORT).show()
                 callback(false)
             }
     }
 
-    // Delete a request
     fun deleteRequest(requestId: String, callback: (Boolean) -> Unit) {
-        if (requestId.isEmpty()) {
-            callback(false)
-            return
-        }
-
-        requestsRef.document(requestId)
+        requestsCollection.document(requestId)
             .delete()
-            .addOnSuccessListener { callback(true) }
+            .addOnSuccessListener {
+                Log.d("SearchCaregiverDB", "Request deleted with ID: $requestId")
+                callback(true)
+            }
             .addOnFailureListener { e ->
-                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("SearchCaregiverDB", "Error deleting request", e)
+                Toast.makeText(context, "Error deleting request: ${e.message}", Toast.LENGTH_SHORT).show()
                 callback(false)
             }
-    }
-
-    // Fetch all requests in real-time
-    fun fetchRequests(onDataChanged: (List<CaregiverRequestData>) -> Unit) {
-        requestsRef.addSnapshotListener { snapshot, error ->
-            if (error != null) {
-                Toast.makeText(context, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
-                return@addSnapshotListener
-            }
-
-            val list = mutableListOf<CaregiverRequestData>()
-            snapshot?.documents?.forEach { doc ->
-                val request = doc.toObject(CaregiverRequestData::class.java)
-                request?.let { list.add(it) }
-            }
-            onDataChanged(list)
-        }
     }
 }

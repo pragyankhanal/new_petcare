@@ -1,6 +1,9 @@
 pluginManagement {
     repositories {
-        google {
+        google { // This is the unrestricted one that resolves the dependency
+            // All Google-hosted libraries will be available here
+        }
+        google { // Your original restricted block
             content {
                 includeGroupByRegex("com\\.android.*")
                 includeGroupByRegex("com\\.google.*")

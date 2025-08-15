@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/acceptedRequestCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:background="@drawable/form_background"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="12dp"
+    android:padding="50dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="#E8F5E9"> <TextView
+        android:id="@+id/acceptedRequestTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request Accepted"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#388E3C"/>
+
+        <TextView
+            android:id="@+id/acceptedRequestDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Scheduled for:"
+            android:textSize="16sp"
+            android:textColor="#333333"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="#CCCCCC"/>
+
+        <TextView
+            android:id="@+id/acceptedPetType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet Type: "
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/acceptedLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Location: "
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:id="@+id/acceptedOwnerContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Owner Contact: "
+            android:textSize="16sp"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

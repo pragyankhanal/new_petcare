@@ -4,11 +4,27 @@ import android.content.Context
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 
+// Data class for a Vet Appointment. This must be consistent across your app.
+data class VetAppointmentData(
+    val appointmentId: String = "",
+    val userId: String = "",
+    val petType: String = "",
+    val serviceType: String = "",
+    val petCondition: String = "",
+    val firstName: String = "",
+    val lastName: String = "",
+    val phoneNumber: String = "",
+    val appointmentDate: String = ""
+)
+
 class VetAppointmentDB(private val context: Context) {
 
     private val db = FirebaseFirestore.getInstance()
     private val appointmentsRef = db.collection("vetAppointments")
-    private val userDBHelper = UserDBHelper(context)
+
+    // Note: The userDBHelper is not used in the provided functions,
+    // so it can be removed to clean up the code.
+    // private val userDBHelper = UserDBHelper(context)
 
     // Insert a new appointment using the Firestore user ID dynamically
     fun insertAppointment(
@@ -30,7 +46,7 @@ class VetAppointmentDB(private val context: Context) {
         val docRef = appointmentsRef.document()
         val appointment = VetAppointmentData(
             appointmentId = docRef.id,
-            userId = userId,     // store userId here
+            userId = userId,
             petType = petType,
             serviceType = serviceType,
             firstName = firstName,
@@ -47,8 +63,9 @@ class VetAppointmentDB(private val context: Context) {
             }
     }
 
-
     // Update an existing appointment
+    // Corrected: The parameter type is now VetAppointmentData
+    // Corrected: The ID reference is now 'appointment.appointmentId'
     fun updateAppointment(appointment: VetAppointmentData, callback: (Boolean) -> Unit) {
         if (appointment.appointmentId.isEmpty()) {
             callback(false)
@@ -59,7 +76,7 @@ class VetAppointmentDB(private val context: Context) {
             .set(appointment)
             .addOnSuccessListener { callback(true) }
             .addOnFailureListener { e ->
-                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Error updating appointment: ${e.message}", Toast.LENGTH_SHORT).show()
                 callback(false)
             }
     }
