@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +25,10 @@
         <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".VetAppointment" />
         <activity android:name=".UserProfileActivity" />
-        <activity android:name=".ChatbotActivity" />
+        <activity
+            android:name=".ChatbotActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
 
 
 
