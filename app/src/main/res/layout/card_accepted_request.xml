@@ -66,6 +66,14 @@
             android:textSize="16sp"
             android:textColor="#000000"/>
 
+        <Button
+            android:id="@+id/btnMarkComplete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Mark as Complete"
+            android:backgroundTint="@color/green_accent" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

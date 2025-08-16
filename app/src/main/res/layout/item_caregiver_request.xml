@@ -35,13 +35,21 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/textDate"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Date: "
+            android:textSize="16sp" />
+
+        <TextView
             android:id="@+id/textSpecialNeeds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Special Needs: "
-            android:textSize="14sp"
-            android:visibility="gone"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/buttonAccept"

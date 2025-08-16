@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:text="Use Current Location"
             android:layout_marginTop="16dp"
-            android:textColor="#0000FF"
+            android:textColor="#964B00"
             android:textSize="14sp"
             android:textStyle="bold"/>
 
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             android:layout_marginTop="24dp"
-            android:backgroundTint="#0000FF"
+            android:backgroundTint="#964B00"
             android:textColor="@android:color/white"/>
     </LinearLayout>
 </ScrollView>

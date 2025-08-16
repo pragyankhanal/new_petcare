@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/nav_profile" android:title="Profile" android:icon="@drawable/ic_person" />
     <item android:id="@+id/nav_chatbot" android:title="Ask Bruno" android:icon="@drawable/ic_dog" />
+    <item android:id="@+id/history" android:title="View History" android:icon="@drawable/ic_history" />
     <item
         android:id="@+id/nav_switch_role"
         android:title="Switch to Caregiver Mode"

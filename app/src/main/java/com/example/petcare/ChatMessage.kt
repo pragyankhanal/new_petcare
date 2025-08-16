@@ -1,3 +1,8 @@
+// ChatMessage.kt
+
 package com.example.petcare.data
 
-data class ChatMessage(val text: String, val isUser: Boolean)
+data class ChatMessage(
+    val text: String,
+    val isUserMessage: Boolean
+)

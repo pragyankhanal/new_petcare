@@ -18,6 +18,7 @@ class CaregiverRequestAdapter(
         val petType: TextView = itemView.findViewById(R.id.textPetType)
         val location: TextView = itemView.findViewById(R.id.textLocation)
         val specialNeeds: TextView = itemView.findViewById(R.id.textSpecialNeeds)
+        val date: TextView = itemView.findViewById(R.id.textDate) // ADDED: Reference to date TextView
         val acceptButton: Button = itemView.findViewById(R.id.buttonAccept)
     }
 
@@ -31,6 +32,7 @@ class CaregiverRequestAdapter(
         val request = requests[position]
         holder.petType.text = "Pet Type: ${request.petType}"
         holder.location.text = "Location: ${request.location}"
+        holder.date.text = "Date: ${request.scheduledDate}" // ADDED: Binding the date data
 
         if (request.specialNeeds.isNotEmpty()) {
             holder.specialNeeds.text = "Special Needs: ${request.specialNeeds}"

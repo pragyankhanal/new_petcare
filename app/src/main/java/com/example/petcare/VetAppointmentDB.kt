@@ -2,10 +2,12 @@ package com.example.petcare
 
 import android.content.Context
 import android.widget.Toast
+import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.FirebaseFirestore
 
 // Data class for a Vet Appointment. This must be consistent across your app.
 data class VetAppointmentData(
+    @DocumentId
     val appointmentId: String = "",
     val userId: String = "",
     val petType: String = "",
@@ -14,7 +16,8 @@ data class VetAppointmentData(
     val firstName: String = "",
     val lastName: String = "",
     val phoneNumber: String = "",
-    val appointmentDate: String = ""
+    val appointmentDate: String = "",
+    val status: String = "pending" // NEW FIELD: Default to "pending"
 )
 
 class VetAppointmentDB(private val context: Context) {

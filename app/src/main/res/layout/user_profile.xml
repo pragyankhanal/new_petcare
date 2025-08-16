@@ -1,128 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="@drawable/login_page">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profileCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="16dp"
+        android:layout_centerInParent="true"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
 
-        <!-- Username shown always, non-editable -->
-        <TextView
-            android:id="@+id/tvUsername"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:paddingBottom="24dp"
-            android:gravity="center" />
+            android:layout_height="match_parent">
 
-        <!-- Email -->
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="16sp"
-            android:padding="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:background="@drawable/dialog_rounded_background">
 
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:visibility="gone"
-            android:padding="8dp" />
+                <TextView
+                    android:id="@+id/textTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit proifle"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="16dp"
+                    android:textColor="#964B00"
+                    android:gravity="center" />
 
-        <!-- Phone -->
-        <TextView
-            android:id="@+id/tvPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone"
-            android:textSize="16sp"
-            android:padding="8dp" />
+                <TextView
+                    android:id="@+id/tvFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Full Name"
+                    android:textSize="16sp"
+                    android:padding="8dp"
+                    android:textColor="@color/black"/>
 
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone"
-            android:inputType="phone"
-            android:visibility="gone"
-            android:padding="8dp" />
+                <EditText
+                    android:id="@+id/etFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    android:inputType="textCapWords"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
 
-        <!-- Pet Name -->
-        <TextView
-            android:id="@+id/tvPetName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pet Name"
-            android:textSize="16sp"
-            android:padding="8dp" />
+                <TextView
+                    android:id="@+id/tvUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Username"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
 
-        <EditText
-            android:id="@+id/etPetName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Pet Name"
-            android:visibility="gone"
-            android:padding="8dp" />
+                <EditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    android:inputType="text"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
 
-        <!-- Pet Type -->
-        <TextView
-            android:id="@+id/tvPetType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pet Type"
-            android:textSize="16sp"
-            android:padding="8dp" />
+                <TextView
+                    android:id="@+id/tvPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
 
-        <EditText
-            android:id="@+id/etPetType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Pet Type"
-            android:visibility="gone"
-            android:padding="8dp" />
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
 
-        <!-- Pet Age -->
-        <TextView
-            android:id="@+id/tvPetAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pet Age"
-            android:textSize="16sp"
-            android:padding="8dp" />
+                <TextView
+                    android:id="@+id/tvConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm Password"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
 
-        <EditText
-            android:id="@+id/etPetAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Pet Age"
-            android:inputType="number"
-            android:visibility="gone"
-            android:padding="8dp" />
+                <EditText
+                    android:id="@+id/etConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
 
-        <!-- Buttons -->
-        <Button
-            android:id="@+id/buttonEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:layout_marginTop="32dp" />
+                <TextView
+                    android:id="@+id/tvPetName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pet Name"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
 
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:visibility="gone"
-            android:layout_marginTop="16dp" />
+                <EditText
+                    android:id="@+id/etPetName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pet Name"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
 
-    </LinearLayout>
-</ScrollView>
+                <TextView
+                    android:id="@+id/tvPetType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pet Type"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
+
+                <EditText
+                    android:id="@+id/etPetType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pet Type"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:id="@+id/tvPetAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pet Age"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
+
+                <EditText
+                    android:id="@+id/etPetAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pet Age"
+                    android:inputType="number"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Phone"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:padding="8dp" />
+
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone"
+                    android:inputType="number"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    android:background="@drawable/edittext_background"
+                    android:padding="8dp" />
+
+                <Button
+                    android:id="@+id/buttonEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:layout_marginTop="32dp"
+                    android:textSize="18dp"
+                    android:backgroundTint="#964B00"
+                    android:textColor="@color/white"
+                    android:background="@drawable/rounded_button_blue"
+                    android:padding="30px"/>
+
+                <Button
+                    android:id="@+id/buttonSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:visibility="gone"
+                    android:backgroundTint="#964B00"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/rounded_button_blue"
+                    android:padding="30px"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

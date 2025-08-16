@@ -24,10 +24,10 @@
         <activity android:name=".SignupActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="false" />
         <activity android:name=".VetAppointment" />
+        <activity android:name=".HistoryActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity
             android:name=".ChatbotActivity"
-            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
 
 

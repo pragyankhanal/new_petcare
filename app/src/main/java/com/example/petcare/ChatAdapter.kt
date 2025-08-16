@@ -23,7 +23,7 @@ class ChatAdapter(private val messages: MutableList<ChatMessage>) :
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val message = messages[position]
-        if (message.isUser) {
+        if (message.isUserMessage) {
             holder.userMessage.text = message.text
             holder.userMessage.visibility = View.VISIBLE
             holder.aiMessage.visibility = View.GONE

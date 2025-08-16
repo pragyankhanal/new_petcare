@@ -19,7 +19,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:paddingBottom="16dp"
-            android:textColor="#1B6FE4"
+            android:textColor="#964B00"
             android:gravity="center" />
 
         <TextView
