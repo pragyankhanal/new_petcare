@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var acceptedPetType: TextView
     private lateinit var acceptedLocation: TextView
     private lateinit var acceptedOwnerContact: TextView
-    private lateinit var btnMarkComplete: Button // ADDED: Reference to the mark complete button
+    private lateinit var btnMarkComplete: Button
 
     private var latestAppointment: VetAppointmentData? = null
     private var latestPendingRequest: CaregiverRequestData? = null
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         acceptedPetType = acceptedRequestCard.findViewById(R.id.acceptedPetType)
         acceptedLocation = acceptedRequestCard.findViewById(R.id.acceptedLocation)
         acceptedOwnerContact = acceptedRequestCard.findViewById(R.id.acceptedOwnerContact)
-        btnMarkComplete = acceptedRequestCard.findViewById(R.id.btnMarkComplete) // ADDED: Find the button here
+        btnMarkComplete = acceptedRequestCard.findViewById(R.id.btnMarkComplete)
 
         // Retrieve user data from SharedPreferences
         val prefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
@@ -143,7 +143,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.history -> {
-                    // Start the new HistoryActivity
                     startActivity(Intent(this, HistoryActivity::class.java))
                     true
                 }
@@ -160,7 +159,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Set the swipe listener
         swipeRefreshLayout.setOnRefreshListener {
             refreshUI()
         }
@@ -171,7 +169,6 @@ class MainActivity : AppCompatActivity() {
         if (loggedInUserId != null) {
             refreshUI()
         } else {
-            // If no user is logged in, hide all dynamic UI elements
             upcomingAppointmentCard.visibility = View.GONE
             pendingRequestCard.visibility = View.GONE
             caregiverRequestsTitle.visibility = View.GONE
@@ -210,7 +207,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshUI() {
-        // First, hide all dynamic UI elements to start with a clean slate
         upcomingAppointmentCard.visibility = View.GONE
         pendingRequestCard.visibility = View.GONE
         buttonVetAppointment.visibility = View.GONE
@@ -222,17 +218,16 @@ class MainActivity : AppCompatActivity() {
 
         requestsPending = 0
 
-        // Then, show only the elements relevant to the current user role
         if (currentUserRole == "pet_owner") {
             buttonVetAppointment.visibility = View.VISIBLE
             buttonSearchCaregiver.visibility = View.VISIBLE
-            requestsPending += 2 // We have 2 requests to make for pet owner
+            requestsPending += 2
             loadLatestAppointment()
             loadAcceptedRequestForPetOwner()
-        } else { // Caregiver Role
+        } else {
             caregiverRequestsTitle.visibility = View.VISIBLE
             caregiverRequestsRecyclerView.visibility = View.VISIBLE
-            requestsPending += 2 // We have 2 requests to make for caregiver
+            requestsPending += 2
             loadAndDisplayCaregiverRequests()
             loadAcceptedRequestForCaregiver()
         }
@@ -246,13 +241,12 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
-
     // -------------------- Firestore Methods --------------------
     private fun loadLatestAppointment() {
         loggedInUserId?.let { userId ->
             firestore.collection("vetAppointments")
                 .whereEqualTo("userId", userId)
-                .whereEqualTo("status", "pending") // ADDED: Filter by status
+                .whereEqualTo("status", "pending")
                 .orderBy("appointmentDate")
                 .limit(1)
                 .get()
@@ -322,27 +316,23 @@ class MainActivity : AppCompatActivity() {
                         acceptedLocation.text = "Location: ${request.location}"
                         acceptedOwnerContact.text = "Caregiver Contact: ${request.ownerContact}"
                         acceptedRequestCard.visibility = View.VISIBLE
-                        btnMarkComplete.visibility = View.GONE // Ensure caregiver button is hidden for pet owner
+                        btnMarkComplete.visibility = View.GONE
 
-                        // Hide the pending request card if an accepted one is found
                         pendingRequestCard.visibility = View.GONE
                     } else {
-                        // If no accepted request is found, check for a pending one
                         loadLatestPendingRequestForPetOwner()
-                        requestsPending-- // Decrease counter to avoid double counting
+                        requestsPending--
                     }
                     checkIfRefreshComplete()
                 }
                 .addOnFailureListener { e ->
                     Log.e("MainActivity", "Error loading accepted request for pet owner", e)
-                    // If there's an error, still try to load the pending request
                     loadLatestPendingRequestForPetOwner()
-                    requestsPending-- // Decrease counter to avoid double counting
+                    requestsPending--
                     checkIfRefreshComplete()
                 }
         }
     }
-
 
     private fun loadAndDisplayCaregiverRequests() {
         firestore.collection("caregiverRequests")
@@ -358,7 +348,6 @@ class MainActivity : AppCompatActivity() {
                     caregiverRequestsRecyclerView.visibility = View.VISIBLE
                     noRequestsText.visibility = View.GONE
 
-                    // Set up the RecyclerView with the new adapter
                     val adapter = CaregiverRequestAdapter(requests.toMutableList(), loggedInUserId) { request ->
                         acceptCaregiverRequest(request.requestId) { success ->
                             if (success) {
@@ -369,7 +358,7 @@ class MainActivity : AppCompatActivity() {
                                     caregiverRequestsTitle.visibility = View.GONE
                                     noRequestsText.visibility = View.VISIBLE
                                 }
-                                refreshUI() // Call refreshUI to show the new accepted card
+                                refreshUI()
                             } else {
                                 Toast.makeText(this, "Failed to accept request", Toast.LENGTH_SHORT).show()
                             }
@@ -379,7 +368,6 @@ class MainActivity : AppCompatActivity() {
                     caregiverRequestsRecyclerView.adapter = adapter
 
                 } else {
-                    // No requests found, show a message
                     caregiverRequestsTitle.visibility = View.GONE
                     caregiverRequestsRecyclerView.visibility = View.GONE
                     noRequestsText.visibility = View.VISIBLE
@@ -413,19 +401,14 @@ class MainActivity : AppCompatActivity() {
                         acceptedOwnerContact.text = "Owner Contact: ${request.ownerContact}"
                         acceptedRequestCard.visibility = View.VISIBLE
 
-                        // Show the 'Mark as Complete' button only to the assigned caregiver
                         btnMarkComplete.visibility = View.VISIBLE
-                        // Set up the click listener for the button
                         setupMarkCompleteButton(request.requestId)
 
-
-                        // Hide pending list as a new card is shown
                         caregiverRequestsTitle.visibility = View.GONE
                         caregiverRequestsRecyclerView.visibility = View.GONE
                         noRequestsText.visibility = View.GONE
                     } else {
                         acceptedRequestCard.visibility = View.GONE
-                        // If no accepted card, show pending list
                         caregiverRequestsTitle.visibility = View.VISIBLE
                         caregiverRequestsRecyclerView.visibility = View.VISIBLE
                         noRequestsText.visibility = View.VISIBLE
@@ -455,7 +438,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showAppointmentDetailsDialog(appointment: VetAppointmentData) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_appointment_details, null)
         val detailsDialog = AlertDialog.Builder(this)
@@ -477,27 +459,52 @@ class MainActivity : AppCompatActivity() {
         val deleteButton = dialogView.findViewById<Button>(R.id.buttonDeleteAppointment)
         val completeButton = dialogView.findViewById<Button>(R.id.buttonCompleteAppointment)
 
-        // Logic to show/hide edit and delete buttons based on the user's role
         if (currentUserRole == "pet_owner") {
             editButton.visibility = View.VISIBLE
             deleteButton.visibility = View.VISIBLE
-        } else { // Caregiver role
+
+            // ADDED: Set click listener for Edit button
+            editButton.setOnClickListener {
+                detailsDialog.dismiss()
+                showEditAppointmentDialog(appointment)
+            }
+
+            // ADDED: Set click listener for Delete button
+            deleteButton.setOnClickListener {
+                AlertDialog.Builder(this)
+                    .setTitle("Delete Appointment")
+                    .setMessage("Are you sure you want to delete this vet appointment?")
+                    .setPositiveButton("Delete") { _, _ ->
+                        val dbHelper = VetAppointmentDB(this)
+                        dbHelper.deleteAppointment(appointment.appointmentId) { success ->
+                            if (success) {
+                                Toast.makeText(this, "Appointment deleted successfully", Toast.LENGTH_SHORT).show()
+                                detailsDialog.dismiss()
+                                refreshUI()
+                            } else {
+                                Toast.makeText(this, "Failed to delete appointment", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .show()
+            }
+
+        } else {
             editButton.visibility = View.GONE
             deleteButton.visibility = View.GONE
         }
 
-        // The complete button is always visible, but its functionality is role-based
         completeButton.visibility = View.VISIBLE
 
         completeButton.setOnClickListener {
             if (currentUserRole == "pet_owner") {
-                // Update the status of the appointment in Firestore
                 firestore.collection("vetAppointments").document(appointment.appointmentId)
                     .update("status", "completed")
                     .addOnSuccessListener {
                         Toast.makeText(this, "Appointment marked as complete!", Toast.LENGTH_SHORT).show()
                         detailsDialog.dismiss()
-                        refreshUI() // Refresh the UI to hide the completed appointment card
+                        refreshUI()
                     }
                     .addOnFailureListener { e ->
                         Toast.makeText(this, "Failed to mark as complete: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -591,7 +598,6 @@ class MainActivity : AppCompatActivity() {
         editDialog.show()
     }
 
-
     private fun showPendingRequestDetailsDialog(request: CaregiverRequestData) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_pending_request_details, null)
         val detailsDialog = AlertDialog.Builder(this)
@@ -649,7 +655,7 @@ class MainActivity : AppCompatActivity() {
                     .setNegativeButton("Cancel", null)
                     .show()
             }
-        } else { // Caregiver role
+        } else {
             editButton.visibility = View.GONE
             deleteButton.visibility = View.GONE
             acceptButton.visibility = View.VISIBLE
@@ -682,7 +688,6 @@ class MainActivity : AppCompatActivity() {
                 callback(false)
             }
     }
-
 
     private fun showEditRequestDialog(request: CaregiverRequestData) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_search_caregiver, null)
@@ -718,8 +723,9 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        buttonSubmit.text = "Update Request"
         buttonGetLocation.setOnClickListener { checkLocationPermission() }
+
+        buttonSubmit.text = "Update Request"
 
         buttonSubmit.setOnClickListener {
             val petType = editPetType.text.toString().trim()
@@ -756,7 +762,6 @@ class MainActivity : AppCompatActivity() {
         editDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         editDialog.show()
     }
-
 
     private fun showCaregiverDialog() {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_search_caregiver, null)
